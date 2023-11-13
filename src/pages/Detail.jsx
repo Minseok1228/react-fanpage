@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import PrintLetter from "../components/PrintLetter";
+import DetailBtn from "../components/DetailBtn";
 function Detail({ fanletters, setFanletters }) {
   console.log(fanletters);
   console.log(setFanletters);
   const navigate = useNavigate();
-  // const params = useParams();
   const location = useLocation();
   const letter = location.state; //navigate로 쏜거 가져옴
   const param = useParams();
@@ -17,9 +17,10 @@ function Detail({ fanletters, setFanletters }) {
       // console.log(letter.id);
       return letter.id !== id;
     });
-    console.log(newLetters);
     setFanletters(newLetters);
   };
+
+  const changeCommentBtn = () => {};
   return (
     <>
       <button
@@ -31,8 +32,13 @@ function Detail({ fanletters, setFanletters }) {
       </button>
       <div>
         <PrintLetter letter={letter} />
-        <button onClick={() => deleteLetterBtn(param.id)}>삭제</button>
-        <button>수정</button>
+        <DetailBtn detailBtn={deleteLetterBtn} id={param.id}>
+          삭제
+        </DetailBtn>
+        {/* <button onClick={() => deleteLetterBtn(param.id)}>삭제</button> */}
+        <DetailBtn detailBtn={changeCommentBtn} id={param.id}>
+          수정
+        </DetailBtn>
       </div>
     </>
   );

@@ -10,18 +10,6 @@ const StSelectBtn = styled.button`
   cursor: pointer;
 `;
 function SelectBtn({ meatFunc, children }) {
-  return (
-    <StSelectBtn onClick={meatFunc}>{children}</StSelectBtn>
-
-    // <>
-    //   {meats.map((meat) => {
-    //     return (
-    //       <button key={meat} onClick={showLetter(true,false,false)}>
-    //         {meat}
-    //       </button>
-    //     );
-    //   })}
-    // </>
-  );
+  return <StSelectBtn onClick={meatFunc}>{children}</StSelectBtn>;
 }
 export default SelectBtn;
