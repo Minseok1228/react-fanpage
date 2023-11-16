@@ -13,12 +13,14 @@ function Modal({ letter, fanletters, setFanletters, modalopen, setModalOpen }) {
     if (!commentChange) {
       alert("수정사항을 입력해 주세요");
     } else {
-      const changedletter = { ...letter, comment: commentChange };
-      const changedFanLetters = fanletters.map((letter) => {
-        return letter.id === changedletter.id ? changedletter : letter;
-      });
-      setFanletters(changedFanLetters);
-      navigate("/");
+      if (window.confirm("이렇게 수정하시겠습니까")) {
+        const changedletter = { ...letter, comment: commentChange };
+        const changedFanLetters = fanletters.map((letter) => {
+          return letter.id === changedletter.id ? changedletter : letter;
+        });
+        setFanletters(changedFanLetters);
+        navigate("/");
+      }
     }
   };
   const cancelChange = () => {
