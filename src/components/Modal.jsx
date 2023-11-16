@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import DetailBtn from "./DetailBtn";
 
-//모달에 보여줄거
-//
 function Modal({ letter, fanletters, setFanletters, modalopen, setModalOpen }) {
   const [commentChange, setCommentChange] = useState();
   const navigate = useNavigate();
@@ -47,17 +45,12 @@ function Modal({ letter, fanletters, setFanletters, modalopen, setModalOpen }) {
       <StBtnBox>
         <DetailBtn detailBtn={changeCommentBtn}>완료</DetailBtn>
         <DetailBtn detailBtn={cancelChange}>취소</DetailBtn>
-
-        {/*   return <StDetailBtn onClick={() => detailBtn(id)}>{children}</StDetailBtn>;
-              <DetailBtn detailBtn={changeCommentBtn} id={param.id}>
-
- */}
       </StBtnBox>
     </>
   );
 }
-//text 200자
 export default Modal;
+
 const StBtnBox = styled.div`
   display: flex;
   gap: 20px;
@@ -74,7 +67,6 @@ const StModal = styled.div`
   padding: 15px;
   margin-top: 100px;
   column-gap: 10px;
-
   height: 300px;
 `;
 const StFigure = styled.figure`
@@ -85,7 +77,6 @@ const StFigure = styled.figure`
 
 const StLetterBox = styled.div`
   width: 400px;
-
   display: flex;
   flex-direction: column;
   gap: 5px;

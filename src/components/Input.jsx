@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const StInpute = styled.input`
-  height: 1.8rem;
-`;
 function Input({ title, state, setState, length, msg }) {
   return (
     <>
@@ -21,3 +18,7 @@ function Input({ title, state, setState, length, msg }) {
 }
 
 export default Input;
+
+const StInpute = styled.input`
+  height: 1.8rem;
+`;

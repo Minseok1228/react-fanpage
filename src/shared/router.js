@@ -49,7 +49,6 @@ const Router = () => {
         },
     ];
     const [fanletters, setFanletters] = useState(initialState);
-    console.log(fanletters)
     return (
         <BrowserRouter>
             <Routes>

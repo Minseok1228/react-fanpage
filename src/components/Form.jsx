@@ -4,6 +4,69 @@ import { useState } from "react";
 import uuid from "react-uuid";
 import styled from "styled-components";
 
+const DEFAULT_IMG = "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429";
+function Form({ meats, fanletters, setFanletters }) {
+  const [nickName, setNickName] = useState("");
+  const [comment, setComment] = useState("");
+  const [writeToMeat, setWritetoMeat] = useState("새우살");
+  const submitBtnHandler = (e) => {
+    e.preventDefault();
+    if (!nickName) {
+      return alert("10자 내의 닉네임을 입력해 주세요.");
+    } else if (!comment) {
+      return alert("150자 내의 내용을 입력해 주세요.");
+    }
+    const newFanLetter = {
+      id: uuid(),
+      writedto: writeToMeat,
+      nickName,
+      comment,
+      avatar: DEFAULT_IMG,
+    };
+    setFanletters([...fanletters, newFanLetter]);
+    setNickName("");
+    setComment("");
+  };
+  const selectMeat = (e) => {
+    setWritetoMeat(e.target.value);
+  };
+
+  return (
+    <StForm>
+      <StFormSection>
+        <StFormP>닉네임 : </StFormP>
+        <Input
+          state={nickName}
+          setState={setNickName}
+          length={10}
+          msg={"10자 내로 입력해 주세요."}
+        />
+      </StFormSection>
+      <StFormSection>
+        <StFormP>내용 : </StFormP>
+
+        <Input
+          state={comment}
+          setState={setComment}
+          length={150}
+          msg={"150자 내로 입력해 주세요."}
+        />
+      </StFormSection>
+      <StFormSection>
+        <StLabel>최애의 부위를 선택해 주세요</StLabel>
+        <StSelect onChange={selectMeat}>
+          {meats.map((meat) => {
+            return <option key={meat}>{meat}</option>;
+          })}
+        </StSelect>
+      </StFormSection>
+      <StSubmitBtn onClick={submitBtnHandler}>팬레터 등록</StSubmitBtn>
+    </StForm>
+  );
+}
+
+export default Form;
+
 const StForm = styled.form`
   border: 5px double black;
   width: 650px;
@@ -40,67 +103,3 @@ const StFormP = styled.p`
 const StLabel = styled.label`
   margin: 10px;
 `;
-const DEFAULT_IMG = "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429";
-function Form({ meats, fanletters, setFanletters }) {
-  const [nickName, setNickName] = useState("");
-  const [comment, setComment] = useState("");
-  const [writeToMeat, setWritetoMeat] = useState("새우살");
-  const submitBtnHandler = (e) => {
-    e.preventDefault();
-    if (!nickName) {
-      return alert("10자 내의 닉네임을 입력해 주세요.");
-    } else if (!comment) {
-      return alert("150자 내의 내용을 입력해 주세요.");
-    }
-    const newFanLetter = {
-      id: uuid(),
-      writedto: writeToMeat,
-      nickName,
-      comment,
-      avatar: DEFAULT_IMG,
-    };
-    setFanletters([...fanletters, newFanLetter]);
-    setNickName("");
-    setComment("");
-  };
-  const selectMeat = (e) => {
-    setWritetoMeat(e.target.value);
-  };
-
-  return (
-    <StForm>
-      {/**유효성검사 */}
-      <StFormSection>
-        <StFormP>닉네임 : </StFormP>
-        <Input
-          state={nickName}
-          setState={setNickName}
-          length={10}
-          msg={"10자 내로 입력해 주세요."}
-        />
-      </StFormSection>
-      <StFormSection>
-        <StFormP>내용 : </StFormP>
-
-        <Input
-          state={comment}
-          setState={setComment}
-          length={150}
-          msg={"150자 내로 입력해 주세요."}
-        />
-      </StFormSection>
-      <StFormSection>
-        <StLabel>최애의 부위를 선택해 주세요</StLabel>
-        <StSelect onChange={selectMeat}>
-          {meats.map((meat) => {
-            return <option key={meat}>{meat}</option>; //옵션도 일종의 input value이다
-            //option에 value를 넣어두면 그 값을 가져옴
-          })}
-        </StSelect>
-      </StFormSection>
-      <StSubmitBtn onClick={submitBtnHandler}>팬레터 등록</StSubmitBtn>
-    </StForm>
-  );
-}
-
-export default Form;

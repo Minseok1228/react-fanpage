@@ -11,7 +11,7 @@ function Header({ selectedMeat, setSelectedMeat, meats }) {
     <>
       <Stheader>
         <StrH1>고 기 고 기</StrH1>
-        <StSelectBox>
+        <div>
           {meats.map((meat) => {
             return (
               <SelectBtn
@@ -23,15 +23,15 @@ function Header({ selectedMeat, setSelectedMeat, meats }) {
               </SelectBtn>
             );
           })}
-        </StSelectBox>
+        </div>
       </Stheader>
     </>
   );
 }
 export default Header;
+
 const Stheader = styled.header`
   background-image: url(${headerImg});
-  /* background-image: url("../assets/header.jpeg"); */
 
   background-repeat: no-repeat;
   background-position: center;
@@ -47,4 +47,3 @@ const StrH1 = styled.h1`
   font-size: 4rem;
   font-weight: 900;
 `;
-const StSelectBox = styled.div``;

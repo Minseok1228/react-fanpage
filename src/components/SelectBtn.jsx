@@ -13,6 +13,7 @@ function SelectBtn({ meatFunc, children, selectedMeat }) {
   );
 }
 export default SelectBtn;
+
 const StSelectBtn = styled.button`
   width: 100px;
   height: 80px;

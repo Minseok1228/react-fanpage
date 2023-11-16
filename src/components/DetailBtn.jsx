@@ -10,6 +10,7 @@ function DetailBtn({ detailBtn, id, children, btnCss }) {
 }
 
 export default DetailBtn;
+
 const StDetailBtn = styled.button`
   width: 100px;
   height: 50px;
