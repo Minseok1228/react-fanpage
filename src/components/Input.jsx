@@ -2,15 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const StInpute = styled.input`
-  height: 1.5rem;
+  height: 1.8rem;
 `;
-function Input({ title, state, setState }) {
+function Input({ title, state, setState, length, msg }) {
   return (
     <>
       <p>{title}</p>
       <StInpute
-        required
+        maxLength={length}
         value={state}
+        placeholder={msg}
         onChange={(e) => {
           setState(e.target.value);
         }}

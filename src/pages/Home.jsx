@@ -1,138 +1,65 @@
-import { useState } from "react";
-import Form from "../components/Form";
-import SelectBtn from "../components/SelectBtn";
-import styled from "styled-components";
-import Filter from "../components/Filter";
+import React from "react";
 
-const Stheader = styled.header`
-  background-color: green;
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  row-gap: 20px;
-`;
-const StrH1 = styled.h1`
-  font-size: 3rem;
-`;
-const StSelectBox = styled.div``;
-const StMain = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-`;
-const StUl = styled.ul`
-  background-color: red;
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-`;
+import { useState } from "react";
+
+import Header from "../components/Header";
+import Main from "../components/Main";
 
 function Home({ fanletters, setFanletters }) {
-  //상태관리해야 할것
-  //닉네임 ,내용,팬레터=부위별 키값을 지정,
-  const MEATS = ["새우살", "살치살", "부채살", "채끝"]; //상수는 대문자 스네이크
-  const [ribCapLetter, setRibCapLetter] = useState(true);
-  const [chuckFlapTailLetter, setChuckFlapTailLetter] = useState(false);
-  const [oysterBladeLetter, setOysterBladeLetter] = useState(false);
-  const [striploinLetter, setStriploinLetter] = useState(false);
-  //조건부 렌더링!
-  const MeatFanLetter = (a, b, c, d) => {
-    setRibCapLetter(a);
-    setChuckFlapTailLetter(b);
-    setOysterBladeLetter(c);
-    setStriploinLetter(d);
-  };
-  //MeatFanLetter(ribCapLetter,true,false,false,false)
+  const MEATS = ["새우살", "살치살", "부채살", "안심", "채끝", "기타"]; //상수는 대문자 스네이크
+  const [selectedMeat, setSelectedMeat] = useState(MEATS[0]);
+
+  //F2로 함수명 한번에 교체 가능./
+
+  // const [lettersState, setLettersState] = useState({
+  //   [MEATS[0]]: true,
+  //   [MEATS[1]]: false,
+  //   [MEATS[2]]: false,
+  //   [MEATS[3]]: false,
+  // });
+
+  // // 계산된 속성명 computed property
+
+  // const meatFanLetter = (meatName) => {
+  //   //최초객체를 넣었어도 이놈이 array를 set을해서 밑에서 index가 반환됨
+  //   const newArr = MEATS.map((meat) => {
+  //     console.log(meat);
+  //     return meat === meatName ? (meat = true) : (meat = false);
+  //   });
+  //   const newObj = MEATS.reduce((a, c, idx) => {
+  //     //a=이전값,c=현재값
+  //     console.log(idx);
+  //     console.log("a : ", a);
+  //     console.log("c :", c);
+  //     console.log("-----------------------");
+  //     a[c] = newArr[idx];
+  //     return a;
+  //   }, {});
+
+  //   //   return { ...a, [c]: newArr[idx] };
+  //   // }, {});
+  //   setLettersState(newObj);
+  // };
+
+  // const selectedMeat = function (object) {
+  //   return Object.keys(object).find((key) => object[key] === true);
+  // };
 
   return (
     <>
-      <Stheader>
-        <StrH1>고기고기</StrH1>
-        {/* <button onClick={() => MeatFanLetter(true, false, false, false)}>
-          새우
-        </button>
-        <button onClick={() => MeatFanLetter(false, true, false, false)}>
-          살치
-        </button>
-        <button onClick={() => MeatFanLetter(false, false, true, false)}>
-          부채
-        </button>
-        <button onClick={() => MeatFanLetter(false, false, false, true)}>
-          채끝
-        </button> */}
-
-        <StSelectBox>
-          <SelectBtn meatFunc={() => MeatFanLetter(true, false, false, false)}>
-            새우살
-          </SelectBtn>
-          <SelectBtn meatFunc={() => MeatFanLetter(false, true, false, false)}>
-            살치살
-          </SelectBtn>
-          <SelectBtn meatFunc={() => MeatFanLetter(false, false, true, false)}>
-            부채살
-          </SelectBtn>
-          <SelectBtn meatFunc={() => MeatFanLetter(false, false, false, true)}>
-            채끝
-          </SelectBtn>
-        </StSelectBox>
-
-        {/* <SelectBtn
-          meats={MEATS}
-          fanletters={fanletters}
-          showLetter={MeatFanLetter}
-        /> */}
-      </Stheader>
-      <StMain>
-        <Form
-          meats={MEATS}
-          fanletters={fanletters}
-          setFanletters={setFanletters}
-        />
-        <StUl>
-          {ribCapLetter ? (
-            <Filter
-              meat={"새우살"}
-              fanletters={fanletters}
-              setFanletters={setFanletters}
-            />
-          ) : (
-            ""
-          )}
-          {chuckFlapTailLetter ? (
-            <Filter
-              meat={"살치살"}
-              fanletters={fanletters}
-              setFanletters={setFanletters}
-            />
-          ) : (
-            ""
-          )}
-          {oysterBladeLetter ? (
-            <Filter
-              meat={"부채살"}
-              fanletters={fanletters}
-              setFanletters={setFanletters}
-            />
-          ) : (
-            ""
-          )}
-          {striploinLetter ? (
-            <Filter
-              meat={"채끝"}
-              fanletters={fanletters}
-              setFanletters={setFanletters}
-            />
-          ) : (
-            ""
-          )}
-        </StUl>
-      </StMain>
-      {/* <footer>발이시려워</footer> */}
+      <Header
+        selectedMeat={selectedMeat}
+        setSelectedMeat={setSelectedMeat}
+        meats={MEATS}
+      />
+      <Main
+        meats={MEATS}
+        fanletters={fanletters}
+        setFanletters={setFanletters}
+        selectedMeat={selectedMeat}
+      />
     </>
   );
 }
+
 export default Home;

@@ -9,7 +9,7 @@ const Router = () => {
             id: '1',
             writedto: "새우살",
             nickName: "가장동",
-            comment: "새우 겁나 마시써요",
+            comment: "새우 겁나 마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요",
             avatar:
                 "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA4MjNfNDkg%2FMDAxNjkyNzQ0MjAzOTYz.hc-L2xJN3DeY_wDIqjTg4fPHyZb-3ugY1aL2fZzly6Ig.9KMWcgy0IAtyllHZhbenp4DzPwwqWJ2_i4l2xgQkkRAg.JPEG.dst02030%2F20230822%25A3%25DF171522.jpg&type=sc960_832",
         },
@@ -17,7 +17,7 @@ const Router = () => {
             id: '2',
             writedto: "살치살",
             nickName: "나장동",
-            comment: "살치 엄청 마시써요",
+            comment: "살치 엄청 마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요",
             avatar:
                 //  URL(
                 "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA4MjNfNDkg%2FMDAxNjkyNzQ0MjAzOTYz.hc-L2xJN3DeY_wDIqjTg4fPHyZb-3ugY1aL2fZzly6Ig.9KMWcgy0IAtyllHZhbenp4DzPwwqWJ2_i4l2xgQkkRAg.JPEG.dst02030%2F20230822%25A3%25DF171522.jpg&type=sc960_832",
@@ -27,7 +27,7 @@ const Router = () => {
             id: '3',
             writedto: "부채살",
             nickName: "다장동",
-            comment: "부채 마시써요",
+            comment: "부채 마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요마시써요",
             avatar:
                 "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA4MjNfNDkg%2FMDAxNjkyNzQ0MjAzOTYz.hc-L2xJN3DeY_wDIqjTg4fPHyZb-3ugY1aL2fZzly6Ig.9KMWcgy0IAtyllHZhbenp4DzPwwqWJ2_i4l2xgQkkRAg.JPEG.dst02030%2F20230822%25A3%25DF171522.jpg&type=sc960_832",
         },
@@ -49,6 +49,7 @@ const Router = () => {
         },
     ];
     const [fanletters, setFanletters] = useState(initialState);
+    console.log(fanletters)
     return (
         <BrowserRouter>
             <Routes>

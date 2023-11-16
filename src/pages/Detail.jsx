@@ -1,45 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import PrintLetter from "../components/PrintLetter";
 import DetailBtn from "../components/DetailBtn";
+import Modal from "../components/Modal";
+import styled from "styled-components";
 function Detail({ fanletters, setFanletters }) {
   console.log(fanletters);
-  console.log(setFanletters);
   const navigate = useNavigate();
   const location = useLocation();
   const letter = location.state; //navigate로 쏜거 가져옴
   const param = useParams();
-  //삭제하면서 home으로 돌아옴, => 확인누르면 home으로
-  //initial은 왜 안사라지니?
+  console.log("param:", param);
+  //확인메시지 띄워서 확인 누를시 작동.
+
   const deleteLetterBtn = (id) => {
-    const newLetters = fanletters.filter((letter) => {
-      // console.log(id); 아니 어이강벗네 겁나안되다가 콘솔찍으려니
-      // console.log(letter.id);
-      return letter.id !== id;
-    });
-    setFanletters(newLetters);
+    if (window.confirm("정말 삭제하시겠습니까")) {
+      const newLetters = fanletters.filter((letter) => {
+        return letter.id !== id;
+      });
+      setFanletters(newLetters);
+      navigate("/");
+    }
   };
 
-  const changeCommentBtn = () => {};
+  //모다르르르르를
+  /*state로 노출여부 관리
+   */
+  const [modalOpen, setModalOpen] = useState(false);
+  console.log(modalOpen);
+
+  const changeCommentBtn = () => {
+    setModalOpen(true);
+  };
+  const goHome = () => {
+    navigate("/");
+  };
+
+  //printletter 컴포넌트를 사용하고 싶따 조건부 스타일링을 통해 사이즈변경
   return (
     <>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
+      <DetailBtn detailBtn={goHome} btnCss={"toHome"}>
         Home
-      </button>
-      <div>
-        <PrintLetter letter={letter} />
-        <DetailBtn detailBtn={deleteLetterBtn} id={param.id}>
-          삭제
-        </DetailBtn>
-        {/* <button onClick={() => deleteLetterBtn(param.id)}>삭제</button> */}
-        <DetailBtn detailBtn={changeCommentBtn} id={param.id}>
-          수정
-        </DetailBtn>
-      </div>
+      </DetailBtn>
+      <Container>
+        {modalOpen ? (
+          <Modal
+            letter={letter}
+            fanletters={fanletters}
+            setFanletters={setFanletters}
+            modalopen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
+        ) : (
+          <>
+            <PrintLetter letter={letter} size={"detail"} />
+            <StBtnBox>
+              <DetailBtn detailBtn={deleteLetterBtn} id={param.id}>
+                삭제
+              </DetailBtn>
+              <DetailBtn detailBtn={changeCommentBtn} id={param.id}>
+                수정
+              </DetailBtn>
+            </StBtnBox>
+          </>
+        )}
+      </Container>
     </>
   );
 }
@@ -47,3 +72,14 @@ function Detail({ fanletters, setFanletters }) {
 //styled-components에 props를 넘김으로 인한 조건부 스타일링 적용 => 선택부분 불들어ㅏ오게
 
 export default Detail;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const StBtnBox = styled.div`
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+`;

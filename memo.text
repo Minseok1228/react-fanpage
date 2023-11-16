@@ -18,3 +18,6 @@
 로컬스토리지 활용
 검색기능 구현? 
 prop drilling => usecontext => redux 브랜치를 나눠서 3가지 방법 모두 구현
+
+overflow:hidden
+text-overflow:ellipsis
