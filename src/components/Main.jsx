@@ -3,20 +3,12 @@ import Form from "../components/Form";
 import styled from "styled-components";
 import Filter from "../components/Filter";
 
-function Main({ meats, fanletters, setFanletters, selectedMeat }) {
+function Main() {
   return (
     <StMain>
-      <Form
-        meats={meats}
-        fanletters={fanletters}
-        setFanletters={setFanletters}
-      />
+      <Form />
       <StUl>
-        <Filter
-          meat={selectedMeat}
-          fanletters={fanletters}
-          setFanletters={setFanletters}
-        />
+        <Filter />
       </StUl>
     </StMain>
   );

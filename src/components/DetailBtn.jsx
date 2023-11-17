@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-function DetailBtn({ detailBtn, id, children, btnCss }) {
+function DetailBtn({ detailBtnFunc, id, children, btnCss }) {
   return (
-    <StDetailBtn $btncss={btnCss} onClick={() => detailBtn(id)}>
+    <StDetailBtn $btncss={btnCss} onClick={() => detailBtnFunc(id)}>
       {children}
     </StDetailBtn>
   );

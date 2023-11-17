@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import PrintLetter from "../components/PrintLetter";
 import DetailBtn from "../components/DetailBtn";
 import Modal from "../components/Modal";
 import styled from "styled-components";
+import { StateContext } from "../context/stateContext";
 
-function Detail({ fanletters, setFanletters }) {
+function Detail() {
+  const { fanletters, setFanletters, modalOpen, setModalOpen } =
+    useContext(StateContext);
   const navigate = useNavigate();
   const location = useLocation();
   const letter = location.state;
   const param = useParams();
-
   const deleteLetterBtn = (id) => {
     if (window.confirm("정말 삭제하시겠습니까")) {
       const newLetters = fanletters.filter((letter) => {
@@ -21,9 +23,6 @@ function Detail({ fanletters, setFanletters }) {
     }
   };
 
-  const [modalOpen, setModalOpen] = useState(false);
-  console.log(modalOpen);
-
   const changeCommentBtn = () => {
     setModalOpen(true);
   };
@@ -33,26 +32,20 @@ function Detail({ fanletters, setFanletters }) {
 
   return (
     <>
-      <DetailBtn detailBtn={goHome} btnCss={"toHome"}>
+      <DetailBtn detailBtnFunc={goHome} btnCss={"toHome"}>
         Home
       </DetailBtn>
       <Container>
         {modalOpen ? (
-          <Modal
-            letter={letter}
-            fanletters={fanletters}
-            setFanletters={setFanletters}
-            modalopen={modalOpen}
-            setModalOpen={setModalOpen}
-          />
+          <Modal letter={letter} />
         ) : (
           <>
             <PrintLetter letter={letter} size={"detail"} />
             <StBtnBox>
-              <DetailBtn detailBtn={deleteLetterBtn} id={param.id}>
+              <DetailBtn detailBtnFunc={deleteLetterBtn} id={param.id}>
                 삭제
               </DetailBtn>
-              <DetailBtn detailBtn={changeCommentBtn} id={param.id}>
+              <DetailBtn detailBtnFunc={changeCommentBtn} id={param.id}>
                 수정
               </DetailBtn>
             </StBtnBox>

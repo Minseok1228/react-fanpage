@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import SelectBtn from "../components/SelectBtn";
 import styled from "styled-components";
 import headerImg from "../assets/header.jpeg";
+import { StateContext } from "../context/stateContext";
 
-function Header({ selectedMeat, setSelectedMeat, meats }) {
+function Header() {
+  const { setSelectedMeat, meats } = useContext(StateContext);
   const meatFanLetter = (meat) => {
     setSelectedMeat(meat);
   };
@@ -11,25 +13,20 @@ function Header({ selectedMeat, setSelectedMeat, meats }) {
     <>
       <Stheader>
         <StrH1>고 기 고 기</StrH1>
-        <div>
+        <StSelectBox>
           {meats.map((meat) => {
             return (
-              <SelectBtn
-                key={meat}
-                selectedMeat={selectedMeat}
-                meatFunc={() => meatFanLetter(meat)}
-              >
+              <SelectBtn key={meat} meatFunc={() => meatFanLetter(meat)}>
                 {meat}
               </SelectBtn>
             );
           })}
-        </div>
+        </StSelectBox>
       </Stheader>
     </>
   );
 }
 export default Header;
-
 const Stheader = styled.header`
   background-image: url(${headerImg});
 
@@ -47,3 +44,4 @@ const StrH1 = styled.h1`
   font-size: 4rem;
   font-weight: 900;
 `;
+const StSelectBox = styled.div``;

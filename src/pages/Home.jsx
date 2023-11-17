@@ -1,27 +1,12 @@
 import React from "react";
-
-import { useState } from "react";
-
 import Header from "../components/Header";
 import Main from "../components/Main";
 
-function Home({ fanletters, setFanletters }) {
-  const MEATS = ["새우살", "살치살", "부채살", "안심", "채끝", "기타"];
-  const [selectedMeat, setSelectedMeat] = useState(MEATS[0]);
-
+function Home() {
   return (
     <>
-      <Header
-        selectedMeat={selectedMeat}
-        setSelectedMeat={setSelectedMeat}
-        meats={MEATS}
-      />
-      <Main
-        meats={MEATS}
-        fanletters={fanletters}
-        setFanletters={setFanletters}
-        selectedMeat={selectedMeat}
-      />
+      <Header />
+      <Main />
     </>
   );
 }

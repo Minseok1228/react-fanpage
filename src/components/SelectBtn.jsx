@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { css } from "styled-components";
+import { StateContext } from "../context/stateContext";
 
-function SelectBtn({ meatFunc, children, selectedMeat }) {
+function SelectBtn({ meatFunc, children }) {
+  const { selectedMeat } = useContext(StateContext);
   return (
     <StSelectBtn
       children={children}

@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Input from "./Input";
-import { useState } from "react";
 import uuid from "react-uuid";
 import styled from "styled-components";
+import { StateContext } from "../context/stateContext";
 
 const DEFAULT_IMG = "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429";
-function Form({ meats, fanletters, setFanletters }) {
-  const [nickName, setNickName] = useState("");
-  const [comment, setComment] = useState("");
-  const [writeToMeat, setWritetoMeat] = useState("새우살");
+function Form() {
+  const {
+    fanletters,
+    setFanletters,
+    meats,
+    nickName,
+    setNickName,
+    comment,
+    setComment,
+    writeToMeat,
+    setWritetoMeat,
+  } = useContext(StateContext);
+
   const submitBtnHandler = (e) => {
     e.preventDefault();
     if (!nickName) {

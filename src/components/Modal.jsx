@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import DetailBtn from "./DetailBtn";
+import { StateContext } from "../context/stateContext";
 
-function Modal({ letter, fanletters, setFanletters, modalopen, setModalOpen }) {
-  const [commentChange, setCommentChange] = useState();
+function Modal({ letter }) {
+  const {
+    commentChange,
+    setCommentChange,
+    fanletters,
+    setFanletters,
+    modalopen,
+    setModalOpen,
+  } = useContext(StateContext);
   const navigate = useNavigate();
 
   const changeCommentBtn = () => {
@@ -17,6 +25,7 @@ function Modal({ letter, fanletters, setFanletters, modalopen, setModalOpen }) {
           return letter.id === changedletter.id ? changedletter : letter;
         });
         setFanletters(changedFanLetters);
+        setModalOpen(false);
         navigate("/");
       }
     }
@@ -43,8 +52,8 @@ function Modal({ letter, fanletters, setFanletters, modalopen, setModalOpen }) {
         </StLetterBox>
       </StModal>
       <StBtnBox>
-        <DetailBtn detailBtn={changeCommentBtn}>완료</DetailBtn>
-        <DetailBtn detailBtn={cancelChange}>취소</DetailBtn>
+        <DetailBtn detailBtnFunc={changeCommentBtn}>완료</DetailBtn>
+        <DetailBtn detailBtnFunc={cancelChange}>취소</DetailBtn>
       </StBtnBox>
     </>
   );

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import PrintLetter from "./PrintLetter";
 import styled from "styled-components";
+import { StateContext } from "../context/stateContext";
 
-function Filter({ meat, fanletters }) {
+function Filter() {
+  const { fanletters, selectedMeat } = useContext(StateContext);
   const letterFilter = () => {
     const filteredLetters = fanletters.filter((letter) => {
-      return letter.writedto === meat;
+      return letter.writedto === selectedMeat;
     });
     return filteredLetters;
   };
@@ -19,7 +21,7 @@ function Filter({ meat, fanletters }) {
   ) : (
     fanletters
       .filter((letter) => {
-        return letter.writedto === meat;
+        return letter.writedto === selectedMeat;
       })
       .reverse()
       .map((letter) => {
