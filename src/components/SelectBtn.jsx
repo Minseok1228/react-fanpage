@@ -30,6 +30,7 @@ const StSelectBtn = styled.button`
 
   border-radius: 30%;
   ${({ $selectedmeat, children }) => {
+    console.log($selectedmeat, children);
     if ($selectedmeat === children) {
       return css`
         background-color: #ff0055;
