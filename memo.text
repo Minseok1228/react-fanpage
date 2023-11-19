@@ -19,5 +19,7 @@
 검색기능 구현? 
 prop drilling => usecontext => redux 브랜치를 나눠서 3가지 방법 모두 구현
 
-overflow:hidden
-text-overflow:ellipsis
+redux: 리덕스 관련코드
+config : 리덕스 설저오간련파일
+consfigStore : 중앙 state관리소 -> 설정코드(.js)
+mdoules : state그류ㅜㅂ

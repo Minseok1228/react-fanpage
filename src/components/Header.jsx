@@ -3,12 +3,16 @@ import SelectBtn from "../components/SelectBtn";
 import styled from "styled-components";
 import headerImg from "../assets/header.jpeg";
 import { StateContext } from "../context/stateContext";
+import { useDispatch } from "react-redux";
+import { selectMeat } from "../redux/modules/selectedMeat";
 
 function Header() {
-  const { setSelectedMeat, meats } = useContext(StateContext);
-  const meatFanLetter = (meat) => {
-    setSelectedMeat(meat);
+  const dispatch = useDispatch();
+  const handleMeatSelect = (meat) => {
+    dispatch(selectMeat(meat));
   };
+  const { meats } = useContext(StateContext);
+
   return (
     <>
       <Stheader>
@@ -16,7 +20,10 @@ function Header() {
         <StSelectBox>
           {meats.map((meat) => {
             return (
-              <SelectBtn key={meat} meatFunc={() => meatFanLetter(meat)}>
+              <SelectBtn
+                key={meat}
+                handleMeatSelect={() => handleMeatSelect(meat)}
+              >
                 {meat}
               </SelectBtn>
             );

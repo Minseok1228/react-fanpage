@@ -1,37 +1,36 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import DetailBtn from "./DetailBtn";
-import { StateContext } from "../context/stateContext";
+import { useDispatch, useSelector } from "react-redux";
+import { handleEdit } from "../redux/modules/modalOpen";
+import { changeFanletter } from "../redux/modules/fanletters";
+import { changedComment } from "../redux/modules/commentChange";
 
 function Modal({ letter }) {
-  const {
-    commentChange,
-    setCommentChange,
-    fanletters,
-    setFanletters,
-    modalopen,
-    setModalOpen,
-  } = useContext(StateContext);
   const navigate = useNavigate();
+  const modalopen = useSelector((state) => {
+    return state.modalopen;
+  });
+  const commentChange = useSelector((state) => {
+    return state.commentChange;
+  });
+
+  const dispatch = useDispatch();
 
   const changeCommentBtn = () => {
     if (!commentChange) {
       alert("수정사항을 입력해 주세요");
     } else {
       if (window.confirm("이렇게 수정하시겠습니까")) {
-        const changedletter = { ...letter, comment: commentChange };
-        const changedFanLetters = fanletters.map((letter) => {
-          return letter.id === changedletter.id ? changedletter : letter;
-        });
-        setFanletters(changedFanLetters);
-        setModalOpen(false);
+        dispatch(changeFanletter({ letter, comment: commentChange }));
+        dispatch(handleEdit(false));
         navigate("/");
       }
     }
   };
   const cancelChange = () => {
-    setModalOpen(false);
+    dispatch(handleEdit(false));
   };
   return (
     <>
@@ -46,7 +45,7 @@ function Modal({ letter }) {
             defaultValue={letter.comment}
             value={commentChange}
             onChange={(e) => {
-              setCommentChange(e.target.value);
+              dispatch(changedComment(e.target.value));
             }}
           />
         </StLetterBox>

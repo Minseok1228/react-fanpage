@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
-import { StateContext } from "../context/stateContext";
+import { useSelector } from "react-redux";
 
-function SelectBtn({ meatFunc, children }) {
-  const { selectedMeat } = useContext(StateContext);
+function SelectBtn({ children, handleMeatSelect }) {
+  const selectedMeat = useSelector((state) => {
+    return state.selectedMeat;
+  });
   return (
     <StSelectBtn
       children={children}
       $selectedmeat={selectedMeat}
-      onClick={meatFunc}
+      onClick={handleMeatSelect}
     >
       {children}
     </StSelectBtn>
@@ -30,7 +32,6 @@ const StSelectBtn = styled.button`
 
   border-radius: 30%;
   ${({ $selectedmeat, children }) => {
-    console.log($selectedmeat, children);
     if ($selectedmeat === children) {
       return css`
         background-color: #ff0055;

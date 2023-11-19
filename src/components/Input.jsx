@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function Input({ title, state, setState, length, msg }) {
+function Input({ title, state, dispatch, length, msg }) {
   return (
     <>
       <p>{title}</p>
@@ -9,9 +9,7 @@ function Input({ title, state, setState, length, msg }) {
         maxLength={length}
         value={state}
         placeholder={msg}
-        onChange={(e) => {
-          setState(e.target.value);
-        }}
+        onChange={dispatch}
       />
     </>
   );

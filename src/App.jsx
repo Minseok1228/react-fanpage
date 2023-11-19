@@ -1,16 +1,15 @@
 import { useState } from "react";
 import Router from "./shared/router";
-import data from "./assets/fakeData.json";
+import dummy from "./assets/fakeData.json";
 import { StateContext } from "./context/stateContext";
+import { useSelector } from "react-redux";
 function App() {
-  const [fanletters, setFanletters] = useState(data);
+  const [fanletters, setFanletters] = useState(dummy);
   const [nickName, setNickName] = useState("");
   const [comment, setComment] = useState("");
-  const [writeToMeat, setWritetoMeat] = useState("새우살");
   const MEATS = ["새우살", "살치살", "부채살", "안심", "채끝", "기타"];
-  const [selectedMeat, setSelectedMeat] = useState(MEATS[0]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [commentChange, setCommentChange] = useState();
+  const [commentChange, setCommentChange] = useState("");
 
   return (
     <StateContext.Provider
@@ -21,11 +20,7 @@ function App() {
         setNickName,
         comment,
         setComment,
-        writeToMeat,
-        setWritetoMeat,
         meats: MEATS,
-        selectedMeat,
-        setSelectedMeat,
         modalOpen,
         setModalOpen,
         commentChange,

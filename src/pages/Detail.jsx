@@ -1,30 +1,31 @@
-import React, { useContext } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import PrintLetter from "../components/PrintLetter";
 import DetailBtn from "../components/DetailBtn";
 import Modal from "../components/Modal";
 import styled from "styled-components";
-import { StateContext } from "../context/stateContext";
+import { useDispatch, useSelector } from "react-redux";
+import { handleEdit } from "../redux/modules/modalOpen";
+import { deleteFanletter } from "../redux/modules/fanletters";
 
 function Detail() {
-  const { fanletters, setFanletters, modalOpen, setModalOpen } =
-    useContext(StateContext);
+  const edit = useSelector((state) => {
+    return state.modalOpen;
+  });
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const location = useLocation();
   const letter = location.state;
   const param = useParams();
   const deleteLetterBtn = (id) => {
     if (window.confirm("정말 삭제하시겠습니까")) {
-      const newLetters = fanletters.filter((letter) => {
-        return letter.id !== id;
-      });
-      setFanletters(newLetters);
+      dispatch(deleteFanletter(id));
       navigate("/");
     }
   };
 
   const changeCommentBtn = () => {
-    setModalOpen(true);
+    dispatch(handleEdit(true));
   };
   const goHome = () => {
     navigate("/");
@@ -36,7 +37,7 @@ function Detail() {
         Home
       </DetailBtn>
       <Container>
-        {modalOpen ? (
+        {edit ? (
           <Modal letter={letter} />
         ) : (
           <>

@@ -1,10 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import PrintLetter from "./PrintLetter";
 import styled from "styled-components";
-import { StateContext } from "../context/stateContext";
+import { useSelector } from "react-redux";
 
 function Filter() {
-  const { fanletters, selectedMeat } = useContext(StateContext);
+  const selectedMeat = useSelector((state) => {
+    return state.selectedMeat;
+  });
+  const fanletters = useSelector((state) => {
+    return state.fanletters;
+  });
   const letterFilter = () => {
     const filteredLetters = fanletters.filter((letter) => {
       return letter.writedto === selectedMeat;
