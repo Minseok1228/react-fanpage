@@ -7,8 +7,13 @@ import styled from "styled-components";
 import { StateContext } from "../context/stateContext";
 
 function Detail() {
-  const { fanletters, setFanletters, modalOpen, setModalOpen } =
-    useContext(StateContext);
+  const {
+    fanletters,
+    setFanletters,
+    modalOpen,
+    setModalOpen,
+    setCommentChange,
+  } = useContext(StateContext);
   const navigate = useNavigate();
   const location = useLocation();
   const letter = location.state;
@@ -24,6 +29,7 @@ function Detail() {
   };
 
   const changeCommentBtn = () => {
+    setCommentChange(letter.comment);
     setModalOpen(true);
   };
   const goHome = () => {
