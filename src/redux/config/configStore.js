@@ -10,7 +10,6 @@ import commentChange from "../modules/commentChange";
 import writeToMeat from "../modules/writeToMeat";
 
 const rootReducer = combineReducers({
-    //module에 있는 state그룹
     commentChange,
     nickName,
     comment,

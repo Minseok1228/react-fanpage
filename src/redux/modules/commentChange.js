@@ -1,6 +1,5 @@
 const CHANGED_COMMENT = 'CHANGED_COMMENT'
 export const changedComment = (comment) => {
-    console.log(comment)
     return {
         type: CHANGED_COMMENT,
         payload: comment

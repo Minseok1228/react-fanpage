@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import Input from "./Input";
 import uuid from "react-uuid";
 import styled from "styled-components";
-import { StateContext } from "../context/stateContext";
 import { useDispatch, useSelector } from "react-redux";
 import { writeTo } from "../redux/modules/writeToMeat";
 import { addFanLetter } from "../redux/modules/fanletters";
@@ -10,8 +9,9 @@ import { addNickName } from "../redux/modules/nickName";
 import { addComment } from "../redux/modules/comment";
 const DEFAULT_IMG = "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429";
 function Form() {
-  const { meats } = useContext(StateContext);
-
+  const meats = useSelector((state) => {
+    return state.MEATS;
+  });
   const nickName = useSelector((state) => {
     return state.nickName;
   });

@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import SelectBtn from "../components/SelectBtn";
 import styled from "styled-components";
 import headerImg from "../assets/header.jpeg";
-import { StateContext } from "../context/stateContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectMeat } from "../redux/modules/selectedMeat";
 
 function Header() {
+  const meats = useSelector((state) => {
+    return state.MEATS;
+  });
+  console.log(meats);
   const dispatch = useDispatch();
   const handleMeatSelect = (meat) => {
     dispatch(selectMeat(meat));
   };
-  const { meats } = useContext(StateContext);
 
   return (
     <>
