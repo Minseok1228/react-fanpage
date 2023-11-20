@@ -42,7 +42,6 @@ function Modal({ letter }) {
           <StNickNameP>{letter.nickName}</StNickNameP>
           <StComment
             maxLength={150}
-            defaultValue={letter.comment}
             value={commentChange}
             onChange={(e) => {
               dispatch(changedComment(e.target.value));

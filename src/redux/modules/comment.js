@@ -6,13 +6,8 @@ export const addComment = (comment) => {
         payload: comment
     }
 }
-//초기상태값
 const initialState = ""
 
-//reducer :함수
-//input:state, action
-
-//action:setState동작
 const comment = (state = initialState, action) => {
     switch (action.type) {
         case ADD_COMMENT:

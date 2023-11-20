@@ -23,13 +23,8 @@ export const changeFanletter = (letter) => {
     }
 
 }
-//초기상태값
 const initialState = data
 
-//reducer :함수
-//input:state, action
-
-//action:setState동작
 const fanletters = (state = initialState, action) => {
     switch (action.type) {
         case ADD_FANLETTER:

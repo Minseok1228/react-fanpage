@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { handleEdit } from "../redux/modules/modalOpen";
 import { deleteFanletter } from "../redux/modules/fanletters";
+import { changedComment } from "../redux/modules/commentChange";
 
 function Detail() {
   const edit = useSelector((state) => {
@@ -26,6 +27,7 @@ function Detail() {
 
   const changeCommentBtn = () => {
     dispatch(handleEdit(true));
+    dispatch(changedComment(letter.comment));
   };
   const goHome = () => {
     navigate("/");
