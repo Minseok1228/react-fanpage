@@ -72,7 +72,7 @@ const StModal = styled.div`
   flex-direction: row;
   gap: 10xp;
   padding: 15px;
-  margin-top: 100px;
+  margin-top: 70px;
   column-gap: 10px;
   height: 300px;
 `;

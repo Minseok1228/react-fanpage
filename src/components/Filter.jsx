@@ -12,7 +12,7 @@ function Filter() {
   });
   const letterFilter = () => {
     const filteredLetters = fanletters.filter((letter) => {
-      return letter.writedto === selectedMeat;
+      return letter.writeto === selectedMeat;
     });
     return filteredLetters;
   };
@@ -26,7 +26,7 @@ function Filter() {
   ) : (
     fanletters
       .filter((letter) => {
-        return letter.writedto === selectedMeat;
+        return letter.writeto === selectedMeat;
       })
       .reverse()
       .map((letter) => {

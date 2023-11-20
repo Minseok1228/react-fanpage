@@ -47,7 +47,7 @@ const StLi = styled.li`
     } else {
       return css`
         height: 300px;
-        margin-top: 100px;
+        margin-top: 70px;
       `;
     }
   }};

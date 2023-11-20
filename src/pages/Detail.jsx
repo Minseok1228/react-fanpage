@@ -32,12 +32,13 @@ function Detail() {
   const goHome = () => {
     navigate("/");
   };
-
+  console.log(letter);
   return (
     <>
       <DetailBtn detailBtnFunc={goHome} btnCss={"toHome"}>
         Home
       </DetailBtn>
+      <Writeto>{letter.writeto}에게 온 팬레터 입니다.</Writeto>
       <Container>
         {edit ? (
           <Modal letter={letter} />
@@ -60,6 +61,11 @@ function Detail() {
 }
 
 export default Detail;
+const Writeto = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+`;
 
 const Container = styled.div`
   display: flex;

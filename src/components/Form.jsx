@@ -37,7 +37,7 @@ function Form() {
     }
     const newFanLetter = {
       id: uuid(),
-      writedto: writeToMeat,
+      writeto: writeToMeat,
       nickName,
       comment,
       avatar: DEFAULT_IMG,
